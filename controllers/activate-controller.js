@@ -8,7 +8,7 @@ class ActivateController{
         if(!name || !avatar){
             res.status(400).json({message: 'All fields are required'});
         }
-        const buffer=Buffer.from(avatar.replace(/^data:image\/png;base64,/,''),'base64');
+        const buffer=Buffer.from(avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/,''),'base64');
         const imagePath=`${Date.now()}-${Math.round(Math.random()*1e9)}.png`;
         try{
             const jimResp=await Jimp.read(buffer);
